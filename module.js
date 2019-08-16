@@ -35,16 +35,23 @@ const modules = {
 };
 
 const load = (modules, entryId) => {
+  // Modules Cache
   const cache = {};
+  // Require Module By Id
   const __require__ = (id) => {
     if (cache[id]) {
       return cache[id].exports;
     }
+    // Create Module 1st Time
     const module = new Module(id, {});
+    // Put in Cache
     cache[id] = module;
+    // Load Module (Assign module.exports value)
     modules[id](module, __require__);
+    // Return module.exports
     return module.exports;
   };
+  // Load Entry Module
   modules[entryId](module, __require__);
 };
 

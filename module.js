@@ -34,3 +34,22 @@ const __require__ = (id) => {
 };
 // 7. Load Modules
 index(indexModule, __require__);
+
+/**
+ * Refactor Version
+ */
+const modules = {
+  './math': math,
+  './index': index,
+};
+
+const load = (modules, entryId) => {
+  const __require__ = (id) => {
+    const module = new Module(id, {});
+    modules[id](module, __require__);
+    return module.exports;
+  };
+  modules[entryId](module, __require__);
+};
+
+load(modules, './index');

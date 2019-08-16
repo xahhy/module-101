@@ -35,8 +35,13 @@ const modules = {
 };
 
 const load = (modules, entryId) => {
+  const cache = {};
   const __require__ = (id) => {
+    if (cache[id]) {
+      return cache[id].exports;
+    }
     const module = new Module(id, {});
+    cache[id] = module;
     modules[id](module, __require__);
     return module.exports;
   };

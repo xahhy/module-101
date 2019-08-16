@@ -23,3 +23,7 @@ function index(module, require) {
   console.log(math.square(2));
 }
 const indexModule = new Module('index', {});
+const __require__ = (id) => {
+  return mathModule.exports;
+};
+index(indexModule, __require__);

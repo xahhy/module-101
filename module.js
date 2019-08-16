@@ -13,6 +13,8 @@ function math(module, require) {
   };
 }
 const mathModule = new Module('math', {});
+math(mathModule);
+console.log(mathModule);
 
 // src/index.js
 function index(module, require) {

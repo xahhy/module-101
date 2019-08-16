@@ -1,3 +1,5 @@
-const math = require('./math');
+function index(require) {
+  const math = require('./math');
 
-console.log(math.square(2));
+  console.log(math.square(2));
+}

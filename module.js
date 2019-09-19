@@ -1,3 +1,6 @@
+/**
+ * module.js
+ */
 class Module {
   constructor(id, exports = {}) {
     this.id = id;
@@ -51,8 +54,9 @@ const load = (modules, entryId) => {
     // Return module.exports
     return module.exports;
   };
+  __require__.cache = cache;
   // Load Entry Module
   modules[entryId](module, __require__);
 };
 
-load(modules, './index');
+module.exports = load;
